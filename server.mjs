@@ -1,27 +1,20 @@
+// server.mjs
+
 import express from 'express';
+import {
+    obtenerSuperheroePorIdController,
+    buscarSuperheroesPorAtributoController,
+    obtenerSuperheroesMayoresDe30Controller
+} from './controllers/superheroesController.mjs';
 
 const app = express();
-const PORT = 3000;
+const PORT = 3005; // El TP pide específicamente el puerto 3005
 
-
-
-app.get('/', (req, res) => {
-   
-    
-    res.send(`Estimados profesores,
-
-Espero que se encuentren bien. Me dirijo a ustedes para comentarles que, debido a algunas dificultades que estoy enfrentando para adaptarme a la nueva modalidad de enseñanza, no me será posible entregar el TP4 en la fecha estipulada.
-
-La dinámica actual me ha resultado un poco compleja de seguir, y estoy trabajando para nivelarme y comprender mejor los contenidos. Quiero comprometerme a entregar el trabajo en breve, en cuanto pueda avanzar y asegurarme de que esté completo y bien realizado.
-
-Agradezco mucho su comprensión y paciencia en este proceso. Cualquier orientación o sugerencia que puedan brindarme para facilitar mi aprendizaje será bienvenida.
-
-Quedo atento a sus comentarios y les agradezco de antemano por su apoyo.
-
-`);
-});
-
+// Rutas
+app.get('/superheroes/id/:id', obtenerSuperheroePorIdController);
+app.get('/superheroes/atributo/:atributo/:valor', buscarSuperheroesPorAtributoController);
+app.get('/superheroes/edad/mayorA30', obtenerSuperheroesMayoresDe30Controller);
 
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor de Superhéroes corriendo en http://localhost:${PORT}`);
 });
